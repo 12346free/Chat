@@ -1,0 +1,17 @@
+<script>
+    let ws = new WebSocket("ws://45.207.204.95:8080");
+
+    ws.onmessage = function(event) {
+        let chat = document.getElementById("chat");
+        chat.innerHTML += "<p>" + event.data + "</p>";
+    };
+
+    function sendMessage() {
+        let message = document.getElementById("message").value;
+        ws.send(message);
+        document.getElementById("message").value = "";
+    }
+</script>
+<input type="text" id="message">
+<button onclick="sendMessage()">发送</button>
+<div id="chat"></div>
